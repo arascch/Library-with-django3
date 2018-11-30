@@ -24,7 +24,7 @@ class Book(models.Model):
         return reverse('book_detail', args = [str(self.id)])
 
 class BookInstance(models.Model):
-    id = models.UUIDField(primary_key=True , defualt = uuid.uuid4 )
+    id = models.UUIDField(primary_key=True , default = uuid.uuid4 )
     book = models.ForeignKey('Book' , on_delete=models.SET_NULL , null = True)
     imprint = models.CharField(max_length = 200)
     due_back = models.DateField(null=True , blank = True)
