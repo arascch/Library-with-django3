@@ -21,7 +21,15 @@ class Book(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('book_detail', args = [str(self.id)])
+        return reverse('catalog:book_detail', args = [str(self.id)])
+
+    def display_genre(self):
+        """
+         Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ genre.name for genre in self.genre.all()[:3] ])
+
+    display_genre.short_description = 'Genre'
 
 class BookInstance(models.Model):
     id = models.UUIDField(primary_key=True , default = uuid.uuid4 )
@@ -52,7 +60,7 @@ class Author (models.Model):
     date_of_death = models.DateField('Died' , null = True , blank = True)
 
     def get_absolute_url(self):
-        return reverse('author-detail' , args = [str(self.id)])
+        return reverse('catalog:author-detail' , args = [str(self.id)])
 
     def __str__(self):
         return '%s , %s' % (self.last_name , self.first_name)
