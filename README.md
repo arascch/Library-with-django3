@@ -2,5 +2,5 @@
 
 Hello friends 
 
-This is my first lite django project for learn
+this is the simple library project . this project coded with python/django
 
